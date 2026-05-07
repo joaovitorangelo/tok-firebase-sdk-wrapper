@@ -1,0 +1,17 @@
+vendor/
+composer.lock
+
+storage/firebase/firebase.json
+storage/**/*.json
+.env
+.env.local
+.env.production
+
+*.log
+logs/
+storage/logs/
+
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

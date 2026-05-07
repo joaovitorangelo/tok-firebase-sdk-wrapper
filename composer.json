@@ -1,0 +1,11 @@
+{
+  "name": "tok/firebase-sdk-wrapper",
+  "autoload": {
+    "psr-4": {
+      "Tok\\Firebase\\": "src/"
+    }
+  },
+  "require": {
+    "kreait/firebase-php": "^5.26"
+  }
+}
