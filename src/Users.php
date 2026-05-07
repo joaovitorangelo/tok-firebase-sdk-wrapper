@@ -3,6 +3,7 @@
 namespace Tok\Firebase;
 
 use Kreait\Firebase\Auth;
+use Kreait\Firebase\Exception\AuthException;
 
 class Users
 {
@@ -16,5 +17,45 @@ class Users
     public function list_users(): array
     {
         return iterator_to_array($this->auth->listUsers());
+    }
+
+    /**
+     * Criar usuário no Firebase
+     */
+    public function create_user(array $data)
+    {
+        try {
+            return $this->auth->createUser([
+                'email' => $data['email'],
+                'password' => $data['password'] ?? null,
+                'displayName' => $data['name'] ?? null,
+                'phoneNumber' => $data['phone'] ?? null,
+                'disabled' => $data['disabled'] ?? false,
+            ]);
+        } catch (AuthException $e) {
+            throw new \Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Atualizar usuário no Firebase
+     */
+    public function update_user(string $uid, array $data)
+    {
+        $payload = [];
+
+        if (!empty($data['email'])) {
+            $payload['email'] = $data['email'];
+        }
+
+        if (!empty($data['name'])) {
+            $payload['displayName'] = $data['name'];
+        }
+
+        if (!empty($data['password'])) {
+            $payload['password'] = $data['password'];
+        }
+
+        return $this->auth->updateUser($uid, $payload);
     }
 }
