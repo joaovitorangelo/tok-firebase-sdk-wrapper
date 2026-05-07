@@ -19,6 +19,11 @@ class Users
         return iterator_to_array($this->auth->listUsers());
     }
 
+    public function get_uid_by_email(string $email): string
+    {
+        return $this->auth->getUserByEmail($email)->uid;
+    }
+
     /**
      * Criar usuário no Firebase
      */
