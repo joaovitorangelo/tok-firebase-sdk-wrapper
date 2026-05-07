@@ -24,17 +24,13 @@ class Users
      */
     public function create_user(array $data)
     {
-        try {
-            return $this->auth->createUser([
-                'email' => $data['email'],
-                'password' => $data['password'] ?? null,
-                'displayName' => $data['name'] ?? null,
-                'phoneNumber' => $data['phone'] ?? null,
-                'disabled' => $data['disabled'] ?? false,
-            ]);
-        } catch (AuthException $e) {
-            throw new \Exception($e->getMessage());
-        }
+        return $this->auth->createUser([
+            'email'       => $data['email'],
+            'password'    => $data['password'] ?? null,
+            'displayName' => $data['name'] ?? null,
+            'phoneNumber' => $data['phone'] ?? null,
+            'disabled'    => $data['disabled'] ?? false,
+        ]);
     }
 
     /**
