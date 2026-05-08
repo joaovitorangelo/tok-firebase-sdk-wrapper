@@ -46,6 +46,7 @@ class Users
     public function update_user(string $uid, array $data)
     {
         return $this->auth->updateUser( 
+            $uid,
             array_filter([
                 'email'       => $data['email'] ?? null,
                 'displayName' => $data['displayName'] ?? null,
