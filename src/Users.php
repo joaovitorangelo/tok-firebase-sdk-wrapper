@@ -29,13 +29,15 @@ class Users
      */
     public function create_user(array $data)
     {
-        return $this->auth->createUser([
-            'email'       => $data['email'],
-            'password'    => $data['password'] ?? null,
-            'displayName' => $data['name'] ?? null,
-            'phoneNumber' => $data['phone'] ?? null,
-            'disabled'    => $data['disabled'] ?? false,
-        ]);
+        return $this->auth->createUser(
+            array_filter([
+                'email'       => $data['email'] ?? null,
+                'password'    => $data['password'] ?? null,
+                'displayName' => $data['displayName'] ?? null,
+                'phoneNumber' => $data['phoneNumber'] ?? null,
+                'disabled'    => $data['disabled'] ?? null,
+            ], fn($value) => $value !== null)
+        );
     }
 
     /**
@@ -43,20 +45,12 @@ class Users
      */
     public function update_user(string $uid, array $data)
     {
-        $payload = [];
-
-        if (!empty($data['email'])) {
-            $payload['email'] = $data['email'];
-        }
-
-        if (!empty($data['name'])) {
-            $payload['displayName'] = $data['name'];
-        }
-
-        if (!empty($data['password'])) {
-            $payload['password'] = $data['password'];
-        }
-
-        return $this->auth->updateUser($uid, $payload);
+        return $this->auth->updateUser( 
+            array_filter([
+                'email'       => $data['email'] ?? null,
+                'displayName' => $data['displayName'] ?? null,
+                'password'    => $data['password'] ?? null,
+            ], fn($value) => $value !== null)
+        );
     }
 }

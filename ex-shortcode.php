@@ -76,3 +76,23 @@ use Tok\Firebase\Users;
 //     }
 // }
 // add_shortcode('ex_shortcode', 'ex_shortcode');
+
+// Pega UID do usuário pelo email
+// function ex_shortcode()
+// {
+//     try {
+
+//         $users = new Users(new Client());
+
+//         $uid = $users->get_uid_by_email('atualizadodsjadkjas@gmail.com');
+
+//         echo '<pre>';
+//         print_r($uid);
+//         echo '</pre>'; 
+
+//     } catch (\Throwable $e) {
+
+//         return $e->getMessage();
+//     }
+// }
+// add_shortcode('ex_shortcode', 'ex_shortcode');
