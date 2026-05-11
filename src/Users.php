@@ -34,7 +34,7 @@ class Users
                 'email'       => $data['email'] ?? null,
                 'password'    => $data['password'] ?? null,
                 'displayName' => $data['displayName'] ?? null,
-                'phoneNumber' => $data['phoneNumber'] ?? null,
+                // 'phoneNumber' => $data['phoneNumber'] ?? null,
                 'disabled'    => $data['disabled'] ?? null,
             ], fn($value) => $value !== null)
         );
